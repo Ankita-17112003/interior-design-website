@@ -101,26 +101,7 @@ const ServiceSection = () => {
               ))}
             </div>
 
-            {/* Button */}
-            <div className="mt-8 md:text-left text-center">
-              <button
-                className="
-                  px-8 py-3
-                  rounded-lg
-                  text-white
-                  font-semibold
-                  bg-gradient-to-r from-[#f0a844] to-[#a78b64]
-                  shadow-lg
-                  transform transition
-                  duration-300
-                  hover:scale-105
-                  hover:from-[#ecb260] hover:to-[#c4a06e]
-                  focus:outline-none
-                "
-              >
-                View All Services
-              </button>
-            </div>
+           
 
           </div>
 

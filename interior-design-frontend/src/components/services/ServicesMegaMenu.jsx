@@ -1,121 +1,188 @@
-// components/ServicesMegaMenu.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import mainServices from "../../data/servicesData";
 
-const ServicesMegaMenu = ({ isOpen, onClose }) => {
-  const [activeService, setActiveService] = useState("residential");
+const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
 
-  // Main services data
-  const mainServices = [
-    { id: "residential", name: "Residential Design", icon: "🏠" },
-    { id: "commercial", name: "Commercial & Hospitality", icon: "🏢" },
-    { id: "turnkey", name: "Turnkey", icon: "🔑" },
-    { id: "consultancy", name: "Consultancy", icon: "💡" },
-    { id: "themed", name: "Themed Interior", icon: "🎭" },
-    { id: "renovation", name: "Renovation", icon: "🔄" },
-    { id: "space", name: "Space Management", icon: "📐" },
-    { id: "customize", name: "Customize Furniture", icon: "🪑" },
-    { id: "affordable", name: "Affordable And Budget Friendly Interior Designers In Pune", icon: "💰" }
-  ];
+const ServicesMegaMenu = ({ isOpen, onClose, onSelectSubservice }) => {
+  const [activeService, setActiveService] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const closeTimer = useRef(null);
 
-  // Subservices data
-  const subservicesData = {
-    residential: ["2 BHK", "3 BHK", "Studio Apartment", "Duplex", "Villa / Bungalow"],
-    commercial: ["Office Interior", "Restaurant Design", "Hotel Design", "Retail Store", "Co-working Space"],
-    turnkey: ["Complete Interior", "Project Management", "Execution Services", "Handover Solutions"],
-    consultancy: ["Design Consultation", "Material Selection", "Space Planning", "Budget Planning"],
-    themed: ["Modern Contemporary", "Minimalist", "Industrial", "Bohemian", "Scandinavian"],
-    renovation: ["Home Renovation", "Kitchen Remodel", "Bathroom Renovation", "Office Renovation"],
-    space: ["Space Optimization", "Storage Solutions", "Floor Planning", "Modular Furniture"],
-    customize: ["Custom Sofas", "Modular Kitchen", "Wardrobes", "TV Units", "Dining Tables"],
-    affordable: ["Budget Homes", "Affordable Apartments", "Small Space Design", "Economical Solutions"]
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const active = mainServices.find((s) => s.id === activeService);
+
+  const handleMouseEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => {
+      setActiveService(null);
+      onClose();
+    }, 150);
   };
 
   if (!isOpen) return null;
 
-  return (
-    <div 
-      className="absolute top-full left-0 mt-2 w-[800px] z-50"
-      onMouseLeave={onClose}
-    >
-      <div className="bg-white shadow-2xl rounded-xl border border-gray-200 overflow-hidden">
-        {/* Header */}
-        <div className="h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
-        
-        <div className="flex">
-          {/* Left Column - Main Services */}
-          <div className="w-[280px] bg-gray-50 p-4">
-            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-3">
-              Main Services
-            </h3>
-            <div className="space-y-1">
-              {mainServices.map((service) => (
-                <div
-                  key={service.id}
-                  onMouseEnter={() => setActiveService(service.id)}
-                  className={`
-                    px-4 py-2.5 rounded-lg cursor-pointer transition-all duration-200
-                    flex items-center gap-3
-                    ${activeService === service.id
-                      ? 'bg-orange-500 text-white'
-                      : 'hover:bg-orange-100 text-gray-700'
-                    }
-                  `}
-                >
-                  <span className="text-lg">{service.icon}</span>
-                  <span className="text-sm font-medium flex-1">
-                    {service.name}
-                  </span>
-                  {activeService === service.id && (
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  )}
-                </div>
-              ))}
+  // ── MOBILE ──
+  if (isMobile) {
+    return (
+      <div style={{
+        position: "absolute", top: "100%", left: "-100px", right: 0,
+        zIndex: 50, background: "#fff",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.15)", width: "260px",
+        maxHeight: "70vh", overflowY: "auto",
+      }}>
+        {mainServices.map((service) => (
+          <div key={service.id}>
+            <div
+              onClick={() => setActiveService(activeService === service.id ? null : service.id)}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "14px 16px", cursor: "pointer",
+                borderBottom: "1px solid #f1f1f1",
+                background: activeService === service.id ? "#fff8f0" : "#fff",
+                borderLeft: activeService === service.id ? "3px solid #f97316" : "3px solid transparent",
+              }}
+            >
+              <span style={{ fontSize: "14px", fontWeight: activeService === service.id ? 600 : 400, color: activeService === service.id ? "#f97316" : "#374151" }}>
+                {service.name}
+              </span>
+              <span style={{ fontSize: "12px", color: "#9ca3af", display: "inline-block", transition: "transform 0.2s", transform: activeService === service.id ? "rotate(90deg)" : "rotate(0deg)" }}>›</span>
             </div>
-          </div>
 
-          {/* Right Column - Subservices */}
-          <div className="flex-1 p-6">
-            {/* Show subservices for active service */}
-            {activeService && subservicesData[activeService] && (
-              <>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-semibold text-gray-700">
-                    {mainServices.find(s => s.id === activeService)?.name}
-                  </h3>
-                  <span className="text-xs text-gray-400">
-                    {subservicesData[activeService].length} services
-                  </span>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-2">
-                  {subservicesData[activeService].map((subservice, index) => (
+            {activeService === service.id && (
+              <div style={{ background: "#fafafa", borderBottom: "1px solid #f1f1f1" }}>
+                {/* Grouped subservices (renovation) */}
+                {service.subGroups ? (
+                  service.subGroups.map((group) => (
+                    <div key={group.groupName}>
+                      <div style={{ padding: "8px 16px 4px 28px", fontSize: "11px", fontWeight: 700, color: "#f97316", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                        {group.groupName}
+                      </div>
+                      {group.items.map((sub, i) => (
+                        <Link
+                          key={i}
+                          to={`/services/${service.id}/${slugify(sub)}`}
+                          onClick={() => { onSelectSubservice && onSelectSubservice(service.id, sub); setActiveService(null); onClose(); }}
+                          style={{ display: "block", padding: "10px 16px 10px 36px", fontSize: "13px", color: "#555", textDecoration: "none", borderBottom: "1px solid #f1f1f1" }}
+                        >
+                          › {sub}
+                        </Link>
+                      ))}
+                    </div>
+                  ))
+                ) : (
+                  service.subservices.map((sub, i) => (
                     <Link
-                      key={index}
-                      to={`/services/${activeService}/${subservice.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="group flex items-center justify-between px-4 py-3 rounded-lg hover:bg-orange-50 transition-all duration-200"
-                      onClick={onClose}
+                      key={i}
+                      to={`/services/${service.id}/${slugify(sub)}`}
+                      onClick={() => { onSelectSubservice && onSelectSubservice(service.id, sub); setActiveService(null); onClose(); }}
+                      style={{ display: "block", padding: "11px 16px 11px 28px", fontSize: "13px", color: "#555", textDecoration: "none", borderBottom: i < service.subservices.length - 1 ? "1px solid #f1f1f1" : "none" }}
                     >
-                      <span className="text-sm text-gray-600 group-hover:text-orange-600">
-                        {subservice}
-                      </span>
-                      <svg 
-                        className="w-4 h-4 text-orange-500 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                      › {sub}
                     </Link>
-                  ))}
-                </div>
-              </>
+                  ))
+                )}
+              </div>
             )}
           </div>
+        ))}
+      </div>
+    );
+  }
+
+  // ── DESKTOP ──
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ position: "absolute", top: "100%", right: 0, left: "auto", zIndex: 50, display: "flex", flexDirection: "row" }}
+    >
+      {/* Subservices — left panel */}
+      {active && (
+        <div style={{
+          background: "#fff", minWidth: "240px",
+          borderTop: "1px solid #e5e7eb", borderLeft: "1px solid #e5e7eb",
+          borderBottom: "1px solid #e5e7eb", borderRight: "none",
+          boxShadow: "-4px 8px 30px rgba(0,0,0,0.08)",
+          maxHeight: "420px", overflowY: "auto",
+        }}>
+          <div style={{ padding: "10px 16px", background: "#fff8f0", borderBottom: "1px solid #f0e8e0" }}>
+            <p style={{ fontSize: "11px", fontWeight: 700, color: "#f97316", textTransform: "uppercase", letterSpacing: "0.08em", margin: 0 }}>
+              {active.name}
+            </p>
+          </div>
+
+          {/* Grouped (renovation) */}
+          {active.subGroups ? (
+            active.subGroups.map((group) => (
+              <div key={group.groupName}>
+                <div style={{ padding: "10px 16px 6px", fontSize: "11px", fontWeight: 700, color: "#f97316", textTransform: "uppercase", letterSpacing: "0.08em", background: "#fffaf5", borderBottom: "1px solid #f5ece0" }}>
+                  {group.groupName}
+                </div>
+                {group.items.map((sub, i) => (
+                  <Link
+                    key={i}
+                    to={`/services/${active.id}/${slugify(sub)}`}
+                    onClick={() => { onSelectSubservice && onSelectSubservice(active.id, sub); setActiveService(null); onClose(); }}
+                    style={{ display: "block", padding: "11px 24px 11px 28px", fontSize: "13px", color: "#374151", textDecoration: "none", borderBottom: "1px solid #f5f5f5", transition: "all 0.15s" }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = "#f97316"; e.currentTarget.style.background = "#fff7ed"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = "#374151"; e.currentTarget.style.background = "#fff"; }}
+                  >
+                    {sub}
+                  </Link>
+                ))}
+              </div>
+            ))
+          ) : (
+            active.subservices.map((sub, i) => (
+              <Link
+                key={i}
+                to={`/services/${active.id}/${slugify(sub)}`}
+                onClick={() => { onSelectSubservice && onSelectSubservice(active.id, sub); setActiveService(null); onClose(); }}
+                style={{ display: "block", padding: "12px 24px", fontSize: "13px", color: "#374151", textDecoration: "none", borderBottom: "1px solid #f5f5f5", transition: "all 0.15s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "#f97316"; e.currentTarget.style.background = "#fff7ed"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "#374151"; e.currentTarget.style.background = "#fff"; }}
+              >
+                {sub}
+              </Link>
+            ))
+          )}
         </div>
+      )}
+
+      {/* Main services — right panel */}
+      <div style={{
+        background: "#fff", minWidth: "240px",
+        border: "1px solid #e5e7eb",
+        boxShadow: "0 8px 30px rgba(0,0,0,0.12)",
+        maxHeight: "420px", overflowY: "auto",
+      }}>
+        {mainServices.map((service) => (
+          <div
+            key={service.id}
+            onMouseEnter={() => setActiveService(service.id)}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "13px 20px", cursor: "pointer", fontSize: "14px",
+              color: activeService === service.id ? "#c9922a" : "#374151",
+              fontWeight: activeService === service.id ? 600 : 400,
+              background: activeService === service.id ? "#fff8f0" : "#fff",
+              borderLeft: activeService === service.id ? "3px solid #c9922a" : "3px solid transparent",
+              transition: "all 0.15s", borderBottom: "1px solid #f5f5f5",
+            }}
+          >
+            <span>{service.name}</span>
+            <span style={{ fontSize: "12px", color: "#9ca3af" }}>›</span>
+          </div>
+        ))}
       </div>
     </div>
   );

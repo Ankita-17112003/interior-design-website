@@ -8,8 +8,6 @@ import ContactSection from "../components/home/ContactSection";
 import OurProcess from "../components/about/OurProcess";
 import Testimonials from "../components/about/Testimonials";
 
-
-
 const Home = () => {
   return (
     <>

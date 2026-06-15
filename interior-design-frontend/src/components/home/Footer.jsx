@@ -69,11 +69,13 @@ const Footer = () => {
                 "Commercial Design",
                 "Turnkey Projects",
                 "Consultancy",
+                "Themed Interior",
+                "Space Management",
                 "Renovation",
               ].map((service, index) => (
                 <li key={index}>
                   <Link
-                    to="/services"
+                    to="/"
                     className="text-gray-400 hover:text-orange-500 transition-colors duration-300 text-sm flex items-center gap-2 group"
                   >
                     <span className="w-1 h-1 bg-orange-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -96,8 +98,7 @@ const Footer = () => {
               <div className="flex gap-3 text-gray-400 group">
                 <FaMapMarkerAlt className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" />
                 <p className="text-xs sm:text-sm leading-relaxed">
-                  Lakshminarayan Bunglow Lane no. 1, Shridhar Colony, Near
-                  Cummins College, Karve Nagar, Pune-411052
+                  Laxminarayan Bunglow Lane, No.1, Cummins College Rd, Sridhar Colony, Karvenagar, Pune, Maharashtra 411052
                 </p>
               </div>
 
@@ -201,7 +202,7 @@ const Footer = () => {
             {/* Map */}
             <div className="rounded-lg overflow-hidden shadow-lg h-40 w-full  mb-4">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.2!2d73.8!3d18.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDMwJzAwLjAiTiA3M8KwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.931810887603!2d73.81673007438282!3d18.486747670208132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfe727b000c1%3A0x10abc4ad674abbde!2sChandak%20%26%20Associates!5e0!3m2!1sen!2sin!4v1781351186348!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

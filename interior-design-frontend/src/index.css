@@ -5,3 +5,9 @@
 body{
   font-family: 'Poppins', sans-serif;
 }
+
+.swiper-slide-active {
+  transform: scale(1.1) !important;
+  transition: 0.4s ease;
+  z-index: 10;
+}

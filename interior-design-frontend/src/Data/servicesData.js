@@ -1,122 +1,69 @@
-// data/servicesData.js
-export const servicesData = [
+const mainServices = [
   {
-    id: 1,
-    title: "Residential Design",
-    icon: "🏠",
-    subservices: [
-      "2 BHK Apartments",
-      "3 BHK Apartments",
-      "Studio Apartments",
-      "Duplex Homes",
-      "Villas & Bungalows",
-      "Luxury Apartments",
-      "Penthouse Design",
-      "Row Houses",
-      "Farmhouses"
-    ]
+    id: "residential",
+    name: "Residential Design",
+    description: "Transform your living spaces into beautiful, functional homes tailored to your lifestyle.",
+    subservices: ["2 BHK", "3 BHK", "Studio Apartment", "Duplex", "Villa / Bungalow"],
   },
   {
-    id: 2,
-    title: "Commercial & Hospitality",
-    icon: "🏢",
-    subservices: [
-      "Office Interiors",
-      "Restaurants & Cafes",
-      "Hotels & Resorts",
-      "Retail Stores",
-      "Co-working Spaces",
-      "Banks & Financial",
-      "Showrooms",
-      "Salons & Spas",
-      "Healthcare Facilities"
-    ]
+    id: "commercial-hospitality",
+    name: "Commercial & Hospitality",
+    description: "Inspiring commercial and hospitality environments that leave lasting impressions.",
+    subservices: ["Office", "Restaurant", "Cafe", "Fitness Club", "Retail Shop", "Hospital", "Bank", "Dental Clinic"],
   },
   {
-    id: 3,
-    title: "Turnkey Projects",
-    icon: "🔑",
-    subservices: [
-      "Complete Home Interiors",
-      "Office Fit-outs",
-      "Commercial Fit-outs",
-      "Project Management",
-      "Execution Services",
-      "Handover Solutions",
-      "Budget Management"
-    ]
+    id: "turnkey",
+    name: "Turnkey Projects",
+    description: "Complete end-to-end interior solutions — from design to execution, hassle free.",
+    subservices: ["2 BHK", "3 BHK", "Bungalow", "Studio Apartment", "Duplex", "Restaurant", "Office", "Hospital", "Bank", "Dental Clinic", "Shop"],
   },
   {
-    id: 4,
-    title: "Design Consultancy",
-    icon: "💡",
-    subservices: [
-      "Design Consultation",
-      "Material Selection",
-      "Space Planning",
-      "Budget Planning",
-      "Vastu Consultation",
-      "Lighting Design",
-      "Furniture Selection"
-    ]
+    id: "consultancy",
+    name: "Consultancy",
+    description: "Expert design consultancy services to guide your project at every stage.",
+    subservices: ["Planning","Working Drawing 2D","3D Views", "Working + Site Execution ", "Labour Providing and Management"],
   },
   {
-    id: 5,
-    title: "Themed Interior",
-    icon: "🎭",
-    subservices: [
-      "Modern Contemporary",
-      "Minimalist Design",
-      "Industrial Style",
-      "Bohemian Style",
-      "Scandinavian Design",
-      "Luxury/Opulent",
-      "Art Deco",
-      "Mediterranean",
-      "Japanese Zen"
-    ]
+    id: "themed-interior",
+    name: "Themed Interior",
+    description: "Unique themed interiors crafted to express your personality and vision.",
+    subservices: ["Rustic", "Modern", "Contemporary", "Art Deco", "Minimalist", "Traditional"],
   },
   {
-    id: 6,
-    title: "Renovation Services",
-    icon: "🔄",
+    id: "renovation",
+    name: "Renovation",
+    description: "Breathe new life into your existing spaces with our expert renovation services.",
     subservices: [
-      "Home Renovation",
-      "Kitchen Remodeling",
-      "Bathroom Renovation",
+      // Full Home Renovation ke andar
+      "Living Room",
+      "Kitchen",
+      "Bedroom",
+      "Balcony",
+      "Bathroom",
+      // Full Commercial Space Renovation ke andar
       "Office Renovation",
-      "Restaurant Makeover",
-      "Space Transformation",
-      "Structural Changes"
-    ]
+      "Hospital Renovation",
+      "Bank Renovation",
+      "Shop Renovation",
+    ],
+    // Nested structure for menu display
+    subGroups: [
+      {
+        groupName: "Full Home Renovation",
+        items: ["Living Room", "Kitchen", "Bedroom", "Balcony", "Bathroom"],
+      },
+      {
+        groupName: "Full Commercial Space Renovation",
+        items: ["Office Renovation", "Hospital Renovation", "Bank Renovation", "Shop Renovation"],
+      },
+    ],
   },
   {
-    id: 7,
-    title: "Space Management",
-    icon: "📐",
-    subservices: [
-      "Space Optimization",
-      "Storage Solutions",
-      "Floor Planning",
-      "Traffic Flow Analysis",
-      "Ergonomic Design",
-      "Modular Furniture",
-      "Multi-functional Spaces"
-    ]
+    id: "space-management",
+    name: "Space Management",
+    description: "Smart space planning solutions that maximise functionality and flow.",
+    subservices: ["Planning", "Furniture Layout", "Landscape Expansion"],
   },
-  {
-    id: 8,
-    title: "Customize Furniture",
-    icon: "🪑",
-    subservices: [
-      "Custom Sofas",
-      "Modular Kitchens",
-      "Wardrobes",
-      "TV Units",
-      "Dining Tables",
-      "Study Tables",
-      "Bed Frames",
-      "Bookshelves"
-    ]
-  }
 ];
+
+export default mainServices;

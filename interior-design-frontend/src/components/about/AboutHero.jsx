@@ -1,7 +1,8 @@
 // components/sections/Hero.jsx
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,41 +18,53 @@ const AboutHero = () => {
       const tl = gsap.timeline();
 
       tl.to(overlayRef.current, {
-        x: '100%',
+        x: "100%",
         duration: 1.5,
-        ease: 'power3.inOut',
+        ease: "power3.inOut",
       });
 
-      tl.from(imageRef.current, {
-        scale: 1.2,
-        duration: 1.5,
-        ease: 'power3.out',
-      }, '-=1');
+      tl.from(
+        imageRef.current,
+        {
+          scale: 1.2,
+          duration: 1.5,
+          ease: "power3.out",
+        },
+        "-=1",
+      );
 
-      tl.from(textRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-      }, '-=0.8');
+      tl.from(
+        textRef.current.children,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        },
+        "-=0.8",
+      );
 
-      tl.from(lineRef.current, {
-        width: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-      }, '-=0.5');
+      tl.from(
+        lineRef.current,
+        {
+          width: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.5",
+      );
 
       // Disable parallax on mobile for better performance
       if (window.innerWidth > 768) {
         gsap.to(imageRef.current, {
           yPercent: 20,
           scale: 1.1,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
+            start: "top top",
+            end: "bottom top",
             scrub: true,
           },
         });
@@ -59,11 +72,11 @@ const AboutHero = () => {
         gsap.to(textRef.current, {
           y: 100,
           opacity: 0.5,
-          ease: 'none',
+          ease: "none",
           scrollTrigger: {
             trigger: heroRef.current,
-            start: 'top top',
-            end: 'bottom top',
+            start: "top top",
+            end: "bottom top",
             scrub: true,
           },
         });
@@ -75,10 +88,10 @@ const AboutHero = () => {
       ScrollTrigger.refresh();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
       ctx.revert();
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -89,10 +102,7 @@ const AboutHero = () => {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <div
-          ref={imageRef}
-          className="absolute inset-0 w-full h-full"
-        >
+        <div ref={imageRef} className="absolute inset-0 w-full h-full">
           <img
             src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
             alt="Minimalist interior design"
@@ -105,10 +115,7 @@ const AboutHero = () => {
       </div>
 
       {/* Initial Overlay */}
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 bg-stone-950 z-20"
-      />
+      <div ref={overlayRef} className="absolute inset-0 bg-stone-950 z-20" />
 
       {/* Content - Added responsive padding for all screen sizes */}
       <div className="relative z-30 h-full flex items-center justify-center md:justify-start">
@@ -116,7 +123,7 @@ const AboutHero = () => {
           <div ref={textRef} className="max-w-3xl text-center md:text-left">
             {/* Decorative line - visible on all screens with proper positioning */}
             <div className="flex items-center justify-center md:justify-start gap-3 md:gap-4 mb-3 md:mb-6">
-              <div 
+              <div
                 ref={lineRef}
                 className="w-4 md:w-12 lg:w-16 h-px bg-orange-500"
               />
@@ -141,10 +148,14 @@ const AboutHero = () => {
             {/* Updated Description - fully responsive with shorter mobile version */}
             <p className="text-sm sm:text-base md:text-lg text-stone-300 mb-5 md:mb-8 leading-relaxed max-w-2xl font-light border-l-2 md:border-l-4 border-orange-500 pl-3 md:pl-4 mx-auto md:mx-0">
               <span className="hidden sm:inline">
-                Creating exceptional living spaces that blend timeless elegance with modern functionality. Each project reflects our commitment to craftsmanship, attention to detail, and personalized design solutions.
+                Creating exceptional living spaces that blend timeless elegance
+                with modern functionality. Each project reflects our commitment
+                to craftsmanship, attention to detail, and personalized design
+                solutions.
               </span>
               <span className="sm:hidden">
-                Timeless elegance meets modern functionality. Crafting personalized spaces with exceptional attention to detail.
+                Timeless elegance meets modern functionality. Crafting
+                personalized spaces with exceptional attention to detail.
               </span>
             </p>
 
@@ -153,19 +164,25 @@ const AboutHero = () => {
               <div className="text-center min-w-[80px] sm:min-w-[100px]">
                 <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                   200
-                  <span className="text-orange-500 text-sm sm:text-base ml-1">+</span>
+                  <span className="text-orange-500 text-sm sm:text-base ml-1">
+                    +
+                  </span>
                 </div>
                 <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1 leading-tight">
-                  Projects <br className="block xs:hidden" />Completed
+                  Projects <br className="block xs:hidden" />
+                  Completed
                 </div>
               </div>
               <div className="text-center min-w-[80px] sm:min-w-[100px]">
                 <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                   200
-                  <span className="text-orange-500 text-sm sm:text-base ml-1">+</span>
+                  <span className="text-orange-500 text-sm sm:text-base ml-1">
+                    +
+                  </span>
                 </div>
                 <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1 leading-tight">
-                  Happy <br className="block xs:hidden" />Clients
+                  Happy <br className="block xs:hidden" />
+                  Clients
                 </div>
               </div>
               <div className="text-center min-w-[80px] sm:min-w-[100px]">
@@ -173,29 +190,43 @@ const AboutHero = () => {
                   15
                 </div>
                 <div className="text-[10px] sm:text-xs uppercase tracking-wider text-stone-400 mt-1 leading-tight">
-                  Years <br className="block xs:hidden" />Experience
+                  Years <br className="block xs:hidden" />
+                  Experience
                 </div>
               </div>
             </div>
 
             {/* CTA buttons - stacked on mobile, row on desktop */}
             <div className="flex flex-col xs:flex-row justify-center md:justify-start gap-3">
-              <button className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm">
+              <Link
+                to="/"
+                className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm block w-fit"
+              >
                 <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
                   Explore Our Story
-                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
                   </svg>
                 </span>
-              </button>
+              </Link>
 
-              <button className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm">
+              <Link to = "/projects" className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm">
                 <span className="absolute inset-0 border-2 border-white/30 group-hover:border-white transition-colors" />
                 <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 group-hover:text-stone-900 transition-colors">
                   View Projects
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -214,9 +245,21 @@ const AboutHero = () => {
       {/* Mobile scroll indicator - simple arrow */}
       <div className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-30">
         <div className="flex flex-col items-center gap-1">
-          <span className="text-[8px] text-white/40 tracking-widest uppercase">Scroll</span>
-          <svg className="w-4 h-4 text-white/40 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7-7-7m14-6l-7 7-7-7" />
+          <span className="text-[8px] text-white/40 tracking-widest uppercase">
+            Scroll
+          </span>
+          <svg
+            className="w-4 h-4 text-white/40 animate-bounce"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7-7-7m14-6l-7 7-7-7"
+            />
           </svg>
         </div>
       </div>
@@ -229,8 +272,12 @@ const AboutHero = () => {
           </span>
           <div className="h-16 w-px bg-white/20" />
           <div className="flex flex-col gap-3">
-            {['ig', 'pt', 'ln'].map((social) => (
-              <a key={social} href="#" className="text-white/30 hover:text-orange-500 transition-colors rotate-90 text-xs">
+            {["ig", "pt", "ln"].map((social) => (
+              <a
+                key={social}
+                href="#"
+                className="text-white/30 hover:text-orange-500 transition-colors rotate-90 text-xs"
+              >
                 {social}
               </a>
             ))}
@@ -243,11 +290,17 @@ const AboutHero = () => {
 
       <style jsx>{`
         @keyframes scroll {
-          0% { transform: translateX(0); }
-          50% { transform: translateX(200%); }
-          100% { transform: translateX(0); }
+          0% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(200%);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
-        
+
         /* Extra small devices */
         @media (min-width: 375px) {
           .xs\\:flex-row {

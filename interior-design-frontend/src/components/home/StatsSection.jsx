@@ -33,8 +33,8 @@ const StatsSection = () => {
   }, []);
 
   const stats = [
-    { number: 250, title: "Projects Completed" },
-    { number: 180, title: "Happy Clients" },
+    { number: 200, title: "Projects Completed" },
+    { number: 200, title: "Happy Clients" },
     { number: 10, title: "Years Experience" },
   ];
 
@@ -42,7 +42,7 @@ const StatsSection = () => {
     <section ref={sectionRef} className="py-20 bg-gray-100">
       <div className="max-w-6xl mx-auto px-6">
 
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-4xl font-bold font-playfair text-center mb-12">
           Our Achievements
         </h2>
 

@@ -10,9 +10,7 @@ const MediaGrid = ({ items, onItemClick }) => {
           <p className="font-['Poppins'] text-stone-500 text-lg mb-2">
             No projects found
           </p>
-          <p className="text-stone-400 text-sm">
-            Try selecting a different filter
-          </p>
+          
         </div>
       </div>
     );

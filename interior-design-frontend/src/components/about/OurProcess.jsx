@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Link } from "react-router-dom";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -302,13 +304,13 @@ const OurProcess = () => {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <button className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-['Poppins'] font-medium overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
+          <Link to = "/contact" className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-['Poppins'] font-medium overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
             <span className="relative z-10">Start Your Journey</span>
             <svg className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
             <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </button>
+          </Link>
         </div>
       </div>
 

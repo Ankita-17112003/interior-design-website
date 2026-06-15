@@ -41,7 +41,7 @@ const ProjectsSection = () => {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Section Heading */}
-        <h2 className="text-4xl font-bold text-center mb-8 text-gray-800 ">
+        <h2 className="text-4xl font-bold font-playfair text-center mb-8 text-gray-800 ">
           Our Projects
         </h2>
 
