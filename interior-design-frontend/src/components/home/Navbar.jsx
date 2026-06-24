@@ -109,9 +109,7 @@ function Navbar() {
 
                   {mobileServicesOpen && (
                     <div className="mt-1 mb-2">
-                      <NavLink to="/services" onClick={closeMenu} className="block py-2 px-4 text-sm text-orange-500 font-medium">
-                        All Services →
-                      </NavLink>
+                     
 
                       {mainServices.map((service) => (
                         <div key={service.id}>

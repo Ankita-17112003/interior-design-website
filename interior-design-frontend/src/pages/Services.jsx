@@ -182,12 +182,17 @@ const Services = () => {
 
         </div>
       ) : (
-        <div style={{ textAlign: "center", padding: "80px 24px", color: "#aaa" }}>
+  <div style={{ textAlign: "center", padding: "80px 24px", color: "#aaa" }}>
 
-          <p style={{ fontSize: "16px", color: "#888" }}>
-            Hover on <strong>Services</strong> in the navbar and select a subservice
-          </p>
-        </div>
+    <p style={{ fontSize: "16px", color: "#888" }}>
+      {window.innerWidth < 768 ? (
+        <>Tap the menu icon (☰) above and select <strong>Our Services</strong> to explore</>
+      ) : (
+        <>Hover on <strong>Services</strong> in the navbar and select a subservice</>
+      )}
+    </p>
+  </div>
+
       )}
     </div>
   );

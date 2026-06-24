@@ -16,7 +16,7 @@ const AdminProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await api.get("/projects");
+      const res = await api.get("/projects/all");
       setProjects(res.data);
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ const AdminProjects = () => {
         <h2 style={{ fontSize: "22px", fontWeight: 700 }}>Projects</h2>
         <button
           onClick={() => setShowForm(!showForm)}
-          style={{ background: "#22c55e", color: "#fff", padding: "8px 20px", borderRadius: "8px", border: "none", cursor: "pointer", fontWeight: 600 }}
+          style={{ background: "#f97316", color: "#fff", padding: "8px 20px", borderRadius: "8px", border: "none", cursor: "pointer", fontWeight: 600 }}
         >
           {showForm ? "✕ Cancel" : "+ Add Project"}
         </button>
@@ -168,13 +168,13 @@ const AdminProjects = () => {
                   placeholder="https://www.youtube.com/watch?v=xxxxxxxx"
                 />
                 <p style={{ fontSize: "11px", color: "#aaa", marginTop: "4px" }}>
-                  Please paste the full URL of the YouTube video.
+                  YouTube video ka full URL paste karo
                 </p>
               </div>
             )}
 
             <button type="submit" disabled={submitting} style={{
-              background: "#22c55e", color: "#fff", padding: "10px 24px",
+              background: "#f97316", color: "#fff", padding: "10px 24px",
               border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600,
             }}>
               {submitting ? "Saving..." : "Save Project"}

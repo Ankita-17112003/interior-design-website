@@ -4,7 +4,9 @@ import gsap from 'gsap';
 import axios from "axios";
 import Swal from "sweetalert2";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaYoutube, FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+import { FaYoutube, FaFacebookF, FaInstagram, FaWhatsapp, FaLinkedinIn, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from "react-icons/fa";
+
+import img2 from "../assets/img6.jpg";
 
 import api from "../api/axios";
 
@@ -171,28 +173,29 @@ if (!emailRegex.test(formData.email)) {
     <div ref={pageRef} className="pt-16 sm:pt-20 min-h-screen bg-white overflow-x-hidden">
       
       {/* Hero Section - Improved */}
-      <section className="relative bg-gradient-to-br from-stone-900 to-stone-800 text-white py-20 sm:py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1618221195710-dd0b2e9b38b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-            alt="Contact"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/90 to-stone-900/70" />
-        </div>
+     {/* Hero Section - Improved */}
+<section className="relative bg-stone-900 text-white py-20 sm:py-24 md:py-32 overflow-hidden">
+  <div className="absolute inset-0">
+    <img
+      src={img2}
+      alt="Contact"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-black/50" />
+  </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-block bg-orange-500/20 backdrop-blur-sm px-4 py-1 rounded-full mb-4">
-            <span className="text-orange-400 text-sm font-semibold">Get in Touch</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-['Playfair_Display'] md:text-6xl lg:text-7xl font-bold mb-4">
-            Let's Create <span className="text-orange-500">Something</span> <br /> Beautiful
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-stone-300 max-w-3xl mx-auto px-4">
-            Have a project in mind? We'd love to hear about it. Let's discuss how we can transform your space into something extraordinary.
-          </p>
-        </div>
-      </section>
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div className="inline-block bg-orange-500/20 backdrop-blur-sm px-4 py-1 rounded-full mb-4">
+      <span className="text-orange-400 text-sm font-semibold">Get in Touch</span>
+    </div>
+    <h1 className="text-4xl sm:text-5xl font-['Playfair_Display'] md:text-6xl lg:text-7xl font-bold mb-4">
+      Let's Create <span className="text-orange-500">Something</span> <br /> Beautiful
+    </h1>
+    <p className="text-base sm:text-lg md:text-xl text-stone-300 max-w-3xl mx-auto px-4">
+      Have a project in mind? We'd love to hear about it. Let's discuss how we can transform your space into something extraordinary.
+    </p>
+  </div>
+</section>
 
       {/* Main Contact Section */}
       <section className="py-12 sm:py-16 md:py-24">
@@ -206,7 +209,7 @@ if (!emailRegex.test(formData.email)) {
                   Send Us a Message
                 </h2>
                 <p className="text-stone-500 mb-6 sm:mb-8 text-sm sm:text-base">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we'll get back to you as soon as possible.
                 </p>
                 
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -321,116 +324,153 @@ if (!emailRegex.test(formData.email)) {
             </div>
 
             {/* Contact Information - Improved */}
-            <div ref={infoRef} className="w-full">
-              <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-orange-100">
-                <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
-                  Contact Information
-                </h2>
-                <p className="text-stone-500 mb-6 sm:mb-8 text-sm sm:text-base">
-                  Feel free to reach out through any of these channels. We're here to help you.
-                </p>
+           <div ref={infoRef} className="w-full">
+  <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-orange-100">
+    <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
+      Contact Information
+    </h2>
+    <p className="text-stone-500 mb-6 sm:mb-8 text-sm sm:text-base">
+      Feel free to reach out through any of these channels. We're here to help you.
+    </p>
 
-                {/* Contact Details */}
-                <div className="space-y-5 sm:space-y-6">
-                  {/* Address */}
-                  <div className="flex items-start gap-3 sm:gap-4 group">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                      <FaMapMarkerAlt className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Visit Us</h3>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
-                        Lakshminarayan Bunglow Lane no. 1, Shridhar Colony, Near Cummins College, Karve Nagar, Pune - 411052
-                      </p>
-                    </div>
-                  </div>
+    {/* Contact Details */}
+    <div className="space-y-5 sm:space-y-6">
 
-                  {/* Phone */}
-                  <div className="flex items-start gap-3 sm:gap-4 group">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                      <FaPhoneAlt className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Call Us</h3>
-                      <a href="tel:+9175905644" className="text-xs sm:text-sm text-stone-600 hover:text-orange-500 transition-colors block mt-1">
-                        +91 91759 05644
-                      </a>
-                    </div>
-                  </div>
+      {/* Address */}
+      <div className="flex items-start gap-3 sm:gap-4 group">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+          <FaMapMarkerAlt className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Visit Us</h3>
+          <p className="text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+            Lakshminarayan Bunglow Lane no. 1, Shridhar Colony, Near Cummins College, Karve Nagar, Pune - 411052
+          </p>
+        </div>
+      </div>
 
-                  {/* Email */}
-                  <div className="flex items-start gap-3 sm:gap-4 group">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                      <FaEnvelope className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Email Us</h3>
-                      <a href="mailto:designerschandakandassociates@gmail.com" className="text-xs sm:text-sm text-stone-600 hover:text-orange-500 transition-colors block mt-1 break-all">
-                        designerschandakandassociates@gmail.com
-                      </a>
-                    </div>
-                  </div>
+      {/* Telephone — NEW */}
+      <div className="flex items-start gap-3 sm:gap-4 group">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+          <FaPhoneAlt className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Telephone</h3>
+          <a
+            href="tel:+912012345678"
+            className="text-xs sm:text-sm text-stone-600 hover:text-orange-500 transition-colors block mt-1"
+          >
+            +91 (020) 1234-5678
+          </a>
+        </div>
+      </div>
 
-                  {/* Business Hours */}
-                  <div className="flex items-start gap-3 sm:gap-4 group">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
-                      <FaClock className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Business Hours</h3>
-                      <p className="text-xs sm:text-sm text-stone-600 mt-1">
-                        Monday - Saturday: 9:00 AM - 7:00 PM<br />
-                        Sunday: Closed
-                      </p>
-                    </div>
-                  </div>
-                </div>
+      {/* Mobile */}
+      <div className="flex items-start gap-3 sm:gap-4 group">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+          <FaPhoneAlt className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Call Us</h3>
+          <a
+            href="tel:+9175905644"
+            className="text-xs sm:text-sm text-stone-600 hover:text-orange-500 transition-colors block mt-1"
+          >
+            +91 91759 05644
+          </a>
+        </div>
+      </div>
 
-                {/* Social Media Links - Improved */}
-                <div className="pt-8 mt-4 border-t border-orange-200">
-                  <h3 className="font-semibold text-stone-800 text-base sm:text-lg mb-5">
-                    Follow Us
-                  </h3>
-                  <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                    <a
-                      href="https://www.facebook.com/share/1DSVz2JGeY/?mibextid=wwXIfr"
-                      className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-md border border-gray-200 flex items-center justify-center overflow-hidden hover:scale-110 transition duration-300"
-                    >
-                      <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition duration-300"></div>
-                      <FaFacebookF className="relative z-10 text-stone-700 group-hover:text-white text-base sm:text-lg" />
-                    </a>
-                    <a
-                      href="https://www.instagram.com/chandakinterior?igsh=NDZwZHgxNWtuZzJw"
-                      className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-md border border-gray-200 flex items-center justify-center overflow-hidden hover:scale-110 transition duration-300"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 translate-y-full group-hover:translate-y-0 transition duration-300"></div>
-                      <FaInstagram className="relative z-10 text-stone-700 group-hover:text-white text-base sm:text-lg" />
-                    </a>
-                    <a
-                      href="#"
-                      className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-md border border-gray-200 flex items-center justify-center overflow-hidden hover:scale-110 transition duration-300"
-                    >
-                      <div className="absolute inset-0 bg-sky-500 translate-y-full group-hover:translate-y-0 transition duration-300"></div>
-                      <FaTwitter className="relative z-10 text-stone-700 group-hover:text-white text-base sm:text-lg" />
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/in/shailesh-chandak-15a7a9a3"
-                      className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-md border border-gray-200 flex items-center justify-center overflow-hidden hover:scale-110 transition duration-300"
-                    >
-                      <div className="absolute inset-0 bg-blue-700 translate-y-full group-hover:translate-y-0 transition duration-300"></div>
-                      <FaLinkedinIn className="relative z-10 text-stone-700 group-hover:text-white text-base sm:text-lg" />
-                    </a>
-                    <a
-                      href="https://www.youtube.com/@ChandakInterior"
-                      className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white shadow-md border border-gray-200 flex items-center justify-center overflow-hidden hover:scale-110 transition duration-300"
-                    >
-                      <div className="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition duration-300"></div>
-                      <FaYoutube className="relative z-10 text-stone-700 group-hover:text-white text-base sm:text-lg" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Email */}
+      <div className="flex items-start gap-3 sm:gap-4 group">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+          <FaEnvelope className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Email Us</h3>
+          <a
+            href="mailto:designerschandakandassociates@gmail.com"
+            className="text-xs sm:text-sm text-stone-600 hover:text-orange-500 transition-colors block mt-1 break-all"
+          >
+            designerschandakandassociates@gmail.com
+          </a>
+        </div>
+      </div>
+
+      {/* Business Hours */}
+      <div className="flex items-start gap-3 sm:gap-4 group">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+          <FaClock className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-stone-800 text-sm sm:text-base">Business Hours</h3>
+          <p className="text-xs sm:text-sm text-stone-600 mt-1">
+            Monday - Saturday: 9:00 AM - 7:00 PM<br />
+            Sunday: Closed
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Social Media Links */}
+    <div className="pt-8 mt-4 border-t border-orange-200">
+      <h3 className="font-semibold text-stone-800 text-base sm:text-lg mb-5">
+        Follow Us
+      </h3>
+
+      <div className="grid grid-cols-5 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+
+        {/* Facebook */}
+        <a href="https://www.facebook.com/share/1DSVz2JGeY/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-1.5">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+            <FaFacebookF className="relative z-10 text-stone-600 group-hover:text-white text-lg transition-colors duration-300" />
+          </div>
+          <span className="text-[10px] text-stone-500 group-hover:text-blue-600 transition-colors duration-300 hidden sm:block">Facebook</span>
+        </a>
+
+        {/* Instagram */}
+        <a href="https://www.instagram.com/chandakinterior?igsh=NDZwZHgxNWtuZzJw" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-1.5">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500 via-red-500 to-yellow-400 translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+            <FaInstagram className="relative z-10 text-stone-600 group-hover:text-white text-lg transition-colors duration-300" />
+          </div>
+          <span className="text-[10px] text-stone-500 group-hover:text-pink-500 transition-colors duration-300 hidden sm:block">Instagram</span>
+        </a>
+
+        {/* WhatsApp */}
+        <a href="https://wa.me/9175905644" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-1.5">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-green-500 translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+            <FaWhatsapp className="relative z-10 text-stone-600 group-hover:text-white text-lg transition-colors duration-300" />
+          </div>
+          <span className="text-[10px] text-stone-500 group-hover:text-green-500 transition-colors duration-300 hidden sm:block">WhatsApp</span>
+        </a>
+
+        {/* LinkedIn */}
+        <a href="https://www.linkedin.com/in/shailesh-chandak-15a7a9a3" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-1.5">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-blue-700 translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+            <FaLinkedinIn className="relative z-10 text-stone-600 group-hover:text-white text-lg transition-colors duration-300" />
+          </div>
+          <span className="text-[10px] text-stone-500 group-hover:text-blue-700 transition-colors duration-300 hidden sm:block">LinkedIn</span>
+        </a>
+
+        {/* YouTube */}
+        <a href="https://www.youtube.com/@ChandakInterior" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-1.5">
+          <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-white shadow-md border border-gray-100 flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition-all duration-300"></div>
+            <FaYoutube className="relative z-10 text-stone-600 group-hover:text-white text-lg transition-colors duration-300" />
+          </div>
+          <span className="text-[10px] text-stone-500 group-hover:text-red-600 transition-colors duration-300 hidden sm:block">YouTube</span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
           </div>
 
           {/* Map Section - Improved */}

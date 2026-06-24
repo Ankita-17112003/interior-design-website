@@ -7,6 +7,7 @@ import ProjectSection from "../components/home/ProjectSection";
 import ContactSection from "../components/home/ContactSection";
 import OurProcess from "../components/about/OurProcess";
 import Testimonials from "../components/about/Testimonials";
+import ServiceAreaSection from "../components/home/ServiceAreaSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Hero/>
       <AboutSection/>
       <ServiceSection />
+      <ServiceAreaSection/>
       <StatsSection />
       <OurProcess/>
       <ProjectSection />

@@ -1,56 +1,47 @@
 import React from "react";
-import { FaQuoteLeft, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const TestimonialCard = ({ testimonial }) => {
   const stars = Math.floor(testimonial.rating || 5);
 
   return (
-    <div
-      className="relative w-full max-w-sm mx-auto bg-white rounded-2xl p-5 shadow-md border border-gray-100
-      transition-all duration-500 ease-in-out
-      hover:-translate-y-3 hover:scale-[1.03]
-      hover:shadow-2xl hover:shadow-orange-100
-      group animate-float"
-    >
+    <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm hover:shadow-lg transition-shadow duration-500 text-center overflow-hidden">
 
-      {/* TOP BAR */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-t-2xl" />
-
-      {/* QUOTE ICON */}
-      <FaQuoteLeft className="absolute top-4 left-4 text-orange-100 text-3xl transition duration-500 group-hover:scale-110" />
+      {/* BACKGROUND QUOTE MARK */}
+      <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-7xl text-orange-50 font-playfair select-none leading-none">
+        "
+      </span>
 
       {/* AVATAR */}
-      <div className="flex justify-center">
-        <div className="w-14 h-14 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg font-bold shadow-md border-2 border-white
-        transition duration-500 group-hover:rotate-6 group-hover:scale-110">
-          {testimonial.name?.charAt(0)?.toUpperCase()}
-        </div>
+      <div className="relative w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-orange-500 to-orange-600 text-white flex items-center justify-center text-lg font-semibold shadow-md mb-4">
+        {testimonial.name?.charAt(0)?.toUpperCase()}
       </div>
 
       {/* NAME */}
-      <h3 className="mt-3 text-base font-semibold text-center text-gray-800">
+      <h3 className="text-base font-semibold text-gray-800 font-playfair">
         {testimonial.name}
       </h3>
 
       {/* CITY */}
-      <p className="text-center text-gray-500 text-xs">
+      <p className="text-gray-400 text-xs mb-3">
         {testimonial.city}
       </p>
 
       {/* STARS */}
-      <div className="flex justify-center mt-2 gap-1">
+      <div className="flex justify-center gap-0.5 mb-4">
         {[...Array(stars)].map((_, i) => (
-          <FaStar
-            key={i}
-            className="text-yellow-400 text-xs transition group-hover:scale-110"
-          />
+          <FaStar key={i} className="text-[#c8a97e] text-xs" />
         ))}
       </div>
 
+      {/* DIVIDER */}
+      <div className="w-10 h-[2px] bg-[#c8a97e] mx-auto mb-4" />
+
       {/* MESSAGE */}
-      <p className="text-center mt-3 text-gray-600 text-sm italic line-clamp-3">
-        “{testimonial.message}”
+      <p className="relative text-gray-600 text-sm leading-relaxed italic min-h-[60px] max-w-md mx-auto">
+        {testimonial.message}
       </p>
+
     </div>
   );
 };

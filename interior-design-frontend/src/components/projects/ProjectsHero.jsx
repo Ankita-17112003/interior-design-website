@@ -56,6 +56,14 @@ const ProjectHero = () => {
     };
   }, []);
 
+  // Scroll to gallery section
+  const scrollToGallery = () => {
+    const gallerySection = document.getElementById('project-gallery');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       ref={heroRef}
@@ -107,6 +115,7 @@ const ProjectHero = () => {
           {/* CTA Button */}
           <div ref={buttonRef}>
             <button
+              onClick={scrollToGallery}
               className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-[#fa8c2d] text-gray-900 font-['Poppins'] font-medium text-xs sm:text-sm tracking-wider uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_10px_30px_-5px_rgba(232,213,196,0.3)] hover:scale-105"
             >
               <span className="relative z-10">Explore Projects</span>

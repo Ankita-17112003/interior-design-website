@@ -7,14 +7,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import img1 from "../../assets/img1.jpg";
+import bedroom from "../../assets/bedroom.jpg";
 import img2 from "../../assets/img2.jpg";
-import img3 from "../../assets/img3.jpg";
+import kitchen from "../../assets/kitchen.jpg";
 
 const slides = [
   {
-    img: img1,
-    heading: "Design is Thinking\nMade Visual",
+    img: bedroom,
+    heading: "Where Simplicity Meets Style",
     sub: "Modern interior designs that bring elegance and comfort to every corner of your home.",
   },
   {
@@ -23,7 +23,7 @@ const slides = [
     sub: "Creating beautiful and functional spaces crafted for your unique lifestyle.",
   },
   {
-    img: img3,
+    img: kitchen,
     heading: "Design Your Home\nWith Modern Technology",
     sub: "Smart, elegant, and creative interior solutions for the future of living.",
   },

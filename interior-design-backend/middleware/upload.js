@@ -21,9 +21,9 @@ const storage = new CloudinaryStorage({
         : {
             transformation: [
               {
-                width: 1600,
+                width: 1200,
                 crop: "limit",
-                quality: "auto",
+                quality: "auto:good",
                 fetch_format: "auto",
               },
             ],
@@ -35,7 +35,7 @@ const storage = new CloudinaryStorage({
 const upload = multer({
   storage,
   limits: {
-    fileSize: 5 * 1024 * 1024,
+    fileSize: 10 * 1024 * 1024,
   },
   fileFilter: (req, file, cb) => {
     if (

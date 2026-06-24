@@ -2,8 +2,9 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import img from "../../assets/img1.jpg";
-import imgg from "../../assets/img2.jpg";
+import living from "../../assets/living.jpg";
+import img from "../../assets/bedroom.jpg";
+import imgg from "../../assets/kitchen.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,21 +123,29 @@ const AboutStory = () => {
             </div>
 
             {/* Mission text */}
-            <div className="space-y-3 sm:space-y-4 text-stone-600 text-sm sm:text-base">
-              <p>
-                Chandak & Interior is a Pune-based company started in 2010. It is a fine
-                mixture of architect and interior firm. In a short time, we have
-                reached every corner of the city and have satisfied clients with
-                innovative ideas and on-time execution. We are into gracing our
-                client homes with the style, sophistication, elegance and warmth
-                that captures the essence of those who live in them.
-              </p>
-              <p>
-                We understand the value of establishing true lasting
-                relationships with our clients, and we embrace the opportunities
-                we have to create their dream homes.
-              </p>
-            </div>
+           <div className="space-y-4 sm:space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed text-justify md:text-left relative">
+  
+  {/* Decorative quote accent */}
+  <span className="absolute -top-2 -left-1 text-5xl sm:text-6xl text-orange-200 font-playfair select-none leading-none">
+    "
+  </span>
+
+  <p className="relative pl-4 border-l-2 border-orange-200">
+    Chandak & Interior is a Pune-based company started in 2010. It is a fine
+    mixture of architect and interior firm. In a short time, we have
+    reached every corner of the city and have satisfied clients with
+    innovative ideas and on-time execution. We are into gracing our
+    client homes with the style, sophistication, elegance and warmth
+    that captures the essence of those who live in them.
+  </p>
+
+  <p className="relative pl-4 border-l-2 border-orange-200">
+    We understand the value of establishing true lasting
+    relationships with our clients, and we embrace the opportunities
+    we have to create their dream homes.
+  </p>
+
+</div>
 
             {/* Values */}
             {/* <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6">
@@ -193,7 +202,7 @@ const AboutStory = () => {
               <div className="col-span-2">
                 <div className="relative rounded-lg overflow-hidden shadow-xl group">
                   <img
-                    src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    src={living}
                     alt="Modern living room"
                     className="w-full h-40 sm:h-48 md:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                   />

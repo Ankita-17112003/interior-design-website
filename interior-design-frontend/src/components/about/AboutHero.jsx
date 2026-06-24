@@ -198,36 +198,52 @@ const AboutHero = () => {
 
             {/* CTA buttons - stacked on mobile, row on desktop */}
             <div className="flex flex-col xs:flex-row justify-center md:justify-start gap-3">
-              <Link
-                to="/"
-                className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm block w-fit"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
-                  Explore Our Story
-                  <svg
-                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </Link>
+  <Link
+    to="/"
+    className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm block w-fit"
+  >
+    <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
+      Explore Our Story
+      <svg
+        className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    </span>
+  </Link>
 
-              <Link to = "/projects" className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm">
-                <span className="absolute inset-0 border-2 border-white/30 group-hover:border-white transition-colors" />
-                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 group-hover:text-stone-900 transition-colors">
-                  View Projects
-                </span>
-              </Link>
-            </div>
+  <Link
+    to="/projects"
+    className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm block w-fit"
+  >
+    <span className="absolute inset-0 border-2 border-white/60 sm:border-white/30 group-hover:border-white group-active:border-white transition-colors" />
+    <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform origin-left duration-300" />
+    <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 group-hover:text-stone-900 group-active:text-stone-900 transition-colors">
+      View Projects
+      <svg
+        className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    </span>
+  </Link>
+</div>
           </div>
         </div>
       </div>

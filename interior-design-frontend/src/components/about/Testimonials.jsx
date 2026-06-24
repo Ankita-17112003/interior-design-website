@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import axios from "axios";
-
+// import axios from "axios";
+import api from "../../api/axios";
 import TestimonialCard from "./TestimonialCard";
 
 import TestimonialForm from "./TestimonialForm";
@@ -14,8 +14,7 @@ const Testimonials = () => {
   // FETCH TESTIMONIALS
   const fetchTestimonials = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/testimonials");
-
+      const res = await api.get("/testimonials");
       setTestimonials(res.data.data);
     } catch (error) {
       console.log(error);

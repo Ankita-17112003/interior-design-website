@@ -1,33 +1,30 @@
 const express = require("express");
 const router = express.Router();
-
 const upload = require("../middleware/upload");
-
 const {
   createProject,
   getProjects,
+  getAllProjects,
   getProjectById,
   updateProject,
   deleteProject,
   getProjectsBySubcategory,
 } = require("../controllers/projectController");
 
-// CREATE
-router.post("/", upload.single("file"), createProject);
-
-// GET ALL
+// Public — with pagination
 router.get("/", getProjects);
 
-// CATEGORY + SUBCATEGORY
+// Admin — no pagination (sab projects)
+router.get("/all", getAllProjects);
+
+// Subcategory filter — with pagination
 router.get("/:category/:subcategory", getProjectsBySubcategory);
 
-// GET SINGLE
+// Single project
 router.get("/:id", getProjectById);
 
-// UPDATE
+router.post("/", upload.single("file"), createProject);
 router.put("/:id", upload.single("file"), updateProject);
-
-// DELETE
 router.delete("/:id", deleteProject);
 
 module.exports = router;
