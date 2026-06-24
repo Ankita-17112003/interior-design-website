@@ -1,3 +1,7 @@
+# Interior Design Website
+
+A modern and responsive Interior Design Website built using the MERN Stack. The platform showcases interior design services, project galleries, testimonials, and contact information for clients looking for professional interior design solutions.
+
 ## Features
 
 - Responsive Design for Mobile, Tablet, and Desktop
