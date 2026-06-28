@@ -72,11 +72,11 @@ function AboutSection() {
         <span className="block text-orange-500">And Associates</span>
       </h2>
 
-      <p className="text-orange-600 text-sm sm:text-base md:text-lg font-semibold tracking-wide uppercase">
+      <p className="text-orange-500 text-sm sm:text-base md:text-lg font-normal font-title tracking-wide uppercase">
         Your Best Partner for Interior Design
       </p>
 
-      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed text-justify">
+      <p className="text-gray-600 text-sm sm:text-base font-poppins  md:text-lg leading-relaxed text-justify">
         We have a top-class professional interior designers firm in Pune. Chandak
         And Associates provides the best interior design matching your
         expectations, by considering proper requirements and selecting quality

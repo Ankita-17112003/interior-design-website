@@ -205,7 +205,7 @@ if (!emailRegex.test(formData.email)) {
             {/* Contact Form - Improved */}
             <div ref={formRef} className="w-full">
               <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-gray-100">
-                <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
+                <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2 font-playfair">
                   Send Us a Message
                 </h2>
                 <p className="text-stone-500 mb-6 sm:mb-8 text-sm sm:text-base">
@@ -326,7 +326,7 @@ if (!emailRegex.test(formData.email)) {
             {/* Contact Information - Improved */}
            <div ref={infoRef} className="w-full">
   <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-orange-100">
-    <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
+    <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2 font-playfair">
       Contact Information
     </h2>
     <p className="text-stone-500 mb-6 sm:mb-8 text-sm sm:text-base">
@@ -476,7 +476,7 @@ if (!emailRegex.test(formData.email)) {
           {/* Map Section - Improved */}
           <div ref={mapRef} className="mt-12 sm:mt-16">
             <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800 mb-3">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800 mb-3 font-playfair">
                 Find Us Here
               </h2>
               <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
@@ -505,7 +505,7 @@ if (!emailRegex.test(formData.email)) {
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-stone-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800 mb-3">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-800 mb-3 font-playfair">
               Frequently Asked Questions
             </h2>
             <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>

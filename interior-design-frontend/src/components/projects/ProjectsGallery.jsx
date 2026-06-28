@@ -23,36 +23,53 @@ const ProjectsGallery = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
 
-  const normalize = (text) =>
-    text?.toLowerCase().trim().replace(/\s+/g, "-");
+  const normalize = (text) => text?.toLowerCase().trim().replace(/\s+/g, "-");
 
   // FETCH with pagination
-  const fetchProjects = useCallback(async (pageNum = 1, reset = false) => {
-    try {
-      if (pageNum === 1) setInitialLoading(true);
-      else setLoadingMore(true);
+  const fetchProjects = useCallback(
+    async (pageNum = 1, reset = false, signal) => {
+      try {
+        if (pageNum === 1) setInitialLoading(true);
+        else setLoadingMore(true);
 
-      const res = await axios.get(
-        `http://localhost:5000/api/projects?page=${pageNum}&limit=${LIMIT}`
-      );
+        const url =
+          service && subservice
+            ? `http://localhost:5000/api/projects/${service}/${subservice}?page=${pageNum}&limit=${LIMIT}`
+            : `http://localhost:5000/api/projects?page=${pageNum}&limit=${LIMIT}`;
 
-      const { projects, hasMore: more } = res.data;
+        const res = await axios.get(url, { signal });
 
-      setMedia((prev) => reset || pageNum === 1 ? projects : [...prev, ...projects]);
-      setHasMore(more);
-      setPage(pageNum);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setInitialLoading(false);
-      setLoadingMore(false);
-    }
-  }, []);
+        const { projects, hasMore: more } = res.data;
+
+        setMedia((prev) =>
+          reset || pageNum === 1 ? projects : [...prev, ...projects],
+        );
+        setHasMore(more);
+        setPage(pageNum);
+      } catch (err) {
+        if (axios.isCancel(err) || err.name === "CanceledError") return;
+        console.log(err);
+      } finally {
+        setInitialLoading(false);
+        setLoadingMore(false);
+      }
+    },
+    [service, subservice],
+  );
 
   // Initial fetch
+  // useEffect(() => {
+  //   fetchProjects(1, true);
+  // }, [fetchProjects]);
+
   useEffect(() => {
-    fetchProjects(1, true);
-  }, [fetchProjects]);
+    const controller = new AbortController();
+
+    setActiveFilter("all");
+    fetchProjects(1, true, controller.signal);
+
+    return () => controller.abort();
+  }, [service, subservice]);
 
   // Reset when URL changes
   useEffect(() => {
@@ -67,9 +84,10 @@ const ProjectsGallery = () => {
     let filtered = [...media];
 
     if (service && subservice) {
-      filtered = filtered.filter((item) =>
-        normalize(item.category) === normalize(service) &&
-        normalize(item.subcategory) === normalize(subservice)
+      filtered = filtered.filter(
+        (item) =>
+          normalize(item.category) === normalize(service) &&
+          normalize(item.subcategory) === normalize(subservice),
       );
     }
 
@@ -92,19 +110,19 @@ const ProjectsGallery = () => {
     setLightboxOpen(true);
   };
 
-  const nextItem = () => setCurrentIndex((p) => p < filteredMedia.length - 1 ? p + 1 : p);
-  const prevItem = () => setCurrentIndex((p) => p > 0 ? p - 1 : p);
+  const nextItem = () =>
+    setCurrentIndex((p) => (p < filteredMedia.length - 1 ? p + 1 : p));
+  const prevItem = () => setCurrentIndex((p) => (p > 0 ? p - 1 : p));
 
   return (
     <>
       <section id="project-gallery" className="py-20 px-6 bg-stone-50">
         <div className="max-w-7xl mx-auto">
-
-          <div className="text-center mb-8 sm:mb-10">
-  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
-    Projects Gallery
-  </h2>
-</div>
+          <div className="text-center mb-8 sm:mb-10 ">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide font-playfair ">
+              Projects Gallery
+            </h2>
+          </div>
 
           <FilterButtons
             activeFilter={activeFilter}
@@ -115,7 +133,10 @@ const ProjectsGallery = () => {
           {initialLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {[...Array(8)].map((_, i) => (
-                <div key={i} className="rounded-xl bg-stone-200 animate-pulse aspect-[4/3]" />
+                <div
+                  key={i}
+                  className="rounded-xl bg-stone-200 animate-pulse aspect-[4/3]"
+                />
               ))}
             </div>
           ) : (
@@ -123,7 +144,7 @@ const ProjectsGallery = () => {
           )}
 
           {/* Load More button */}
-          {!initialLoading && hasMore && !service && !subservice && activeFilter === "all" && (
+          {!initialLoading && hasMore && activeFilter === "all" && (
             <div className="flex justify-center mt-12">
               <button
                 onClick={handleLoadMore}
@@ -132,9 +153,24 @@ const ProjectsGallery = () => {
               >
                 {loadingMore ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    <svg
+                      className="animate-spin h-5 w-5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
                     </svg>
                     Loading...
                   </>
@@ -151,7 +187,6 @@ const ProjectsGallery = () => {
               Showing {filteredMedia.length} projects
             </p>
           )}
-
         </div>
       </section>
 

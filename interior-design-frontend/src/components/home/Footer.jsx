@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Top Section */}
         <div className="text-center mb-10 pb-6 border-b border-gray-800">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 font-playfair">
             Chandak & <span className="text-orange-500">Associates</span>
           </h1>
           <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">
@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { to: "/", label: "Home" },
-                { to: "/services", label: "Services" },
+                { to: "#", label: "Services" },
                 { to: "/projects", label: "Projects" },
                 { to: "/about", label: "About Us" },
                 { to: "/contact", label: "Contact" },
@@ -211,8 +211,8 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-gray-950 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p className="text-xs sm:text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 ">
+            <p className="text-xs sm:text-sm text-gray-500 ">
               &copy; {new Date().getFullYear()} Chandak & Associates. All rights reserved.
             </p>
             <div className="flex gap-4 text-xs text-gray-600">

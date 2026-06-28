@@ -133,7 +133,7 @@ const AboutHero = () => {
             </div>
 
             {/* Main headline - responsive text sizes */}
-            <h1 className="text-white mb-3 md:mb-4">
+            <h1 className="text-white mb-3 md:mb-4 font-playfair">
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-white to-stone-400 bg-clip-text text-transparent">
                 Welcome To
               </span>
@@ -146,7 +146,7 @@ const AboutHero = () => {
             </h1>
 
             {/* Updated Description - fully responsive with shorter mobile version */}
-            <p className="text-sm sm:text-base md:text-lg text-stone-300 mb-5 md:mb-8 leading-relaxed max-w-2xl font-light border-l-2 md:border-l-4 border-orange-500 pl-3 md:pl-4 mx-auto md:mx-0">
+            <p className="text-sm sm:text-base md:text-lg text-stone-300 mb-5 md:mb-8 leading-relaxed max-w-2xl font-light border-l-2 md:border-l-4 border-orange-500 pl-3 md:pl-4 mx-auto md:mx-0 font-poppins ">
               <span className="hidden sm:inline">
                 Creating exceptional living spaces that blend timeless elegance
                 with modern functionality. Each project reflects our commitment
@@ -197,53 +197,53 @@ const AboutHero = () => {
             </div>
 
             {/* CTA buttons - stacked on mobile, row on desktop */}
-            <div className="flex flex-col xs:flex-row justify-center md:justify-start gap-3">
-  <Link
-    to="/"
-    className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm block w-fit"
-  >
-    <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
-      Explore Our Story
-      <svg
-        className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M17 8l4 4m0 0l-4 4m4-4H3"
-        />
-      </svg>
-    </span>
-  </Link>
+            <div className="flex flex-col xs:flex-row  items-center justify-center md:justify-start gap-3">
+              <Link
+                to="/"
+                className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-orange-500 text-white font-medium overflow-hidden rounded-none transition-all duration-300 hover:bg-orange-600 text-xs sm:text-sm block w-fit"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
+                  Explore Our Story
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-2 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              </Link>
 
-  <Link
-    to="/projects"
-    className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm block w-fit"
-  >
-    <span className="absolute inset-0 border-2 border-white/60 sm:border-white/30 group-hover:border-white group-active:border-white transition-colors" />
-    <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform origin-left duration-300" />
-    <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 group-hover:text-stone-900 group-active:text-stone-900 transition-colors">
-      View Projects
-      <svg
-        className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M17 8l4 4m0 0l-4 4m4-4H3"
-        />
-      </svg>
-    </span>
-  </Link>
-</div>
+              <Link
+                to="/projects"
+                className="group relative px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-white font-medium overflow-hidden rounded-none transition-all duration-300 text-xs sm:text-sm block w-fit"
+              >
+                <span className="absolute inset-0 border-2 border-white/60 sm:border-white/30 group-hover:border-white group-active:border-white transition-colors" />
+                <span className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 group-active:scale-x-100 transition-transform origin-left duration-300" />
+                <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 group-hover:text-stone-900 group-active:text-stone-900 transition-colors">
+                  View Projects
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

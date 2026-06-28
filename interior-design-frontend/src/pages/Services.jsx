@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import mainServices from "../data/servicesData";
 
 const slugify = (text) => text.toLowerCase().replace(/\s+/g, "-");
 const slugToLabel = (slug) =>
   slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
-// Extract YouTube video ID from URL
 const getYoutubeId = (url) => {
   if (!url) return null;
   const normalMatch = url.match(/[?&]v=([^&]+)/);
@@ -35,23 +34,16 @@ const ProjectCard = ({ project }) => {
       }}
     >
       <div style={{ overflow: "hidden", height: "220px", position: "relative" }}>
-
-        {/* YouTube video */}
         {project.type === "youtube" && youtubeId ? (
           <iframe
             src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&mute=1&rel=0`}
-            width="100%"
-            height="100%"
-            frameBorder="0"
+            width="100%" height="100%" frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ border: "none", display: "block" }}
+            allowFullScreen style={{ border: "none", display: "block" }}
           />
         ) : (
-          /* Cloudinary Image */
           <img
-            src={project.src}
-            alt={project.title}
+            src={project.src} alt={project.title}
             style={{
               width: "100%", height: "100%", objectFit: "cover",
               transform: hovered ? "scale(1.05)" : "scale(1)",
@@ -59,21 +51,17 @@ const ProjectCard = ({ project }) => {
             }}
           />
         )}
-
-        {/* YouTube badge */}
         {project.type === "youtube" && (
           <div style={{
             position: "absolute", top: "10px", right: "10px",
             background: "#ff0000", color: "#fff",
             fontSize: "10px", fontWeight: 700,
-            padding: "3px 8px", borderRadius: "4px",
-            letterSpacing: "0.05em",
+            padding: "3px 8px", borderRadius: "4px", letterSpacing: "0.05em",
           }}>
             ▶ YouTube
           </div>
         )}
       </div>
-
       <div style={{ padding: "16px 18px" }}>
         <h3 style={{ fontSize: "15px", fontWeight: 700, color: "#1a1a1a", marginBottom: "6px" }}>
           {project.title}
@@ -94,7 +82,11 @@ const Services = () => {
   const [selected, setSelected] = useState(null);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     if (service && subservice) {
@@ -102,20 +94,45 @@ const Services = () => {
     }
   }, [service, subservice]);
 
+  // ✅ Fetch function — reset=true means naye filter pe fresh load
+  const fetchProjects = async (selectedData, pageNum = 1, reset = true) => {
+    if (!selectedData) return;
+
+    pageNum === 1 ? setLoading(true) : setLoadingMore(true);
+    setError("");
+
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/projects/${selectedData.serviceId}/${slugify(selectedData.subservice)}?page=${pageNum}&limit=12`
+      );
+      const data = await res.json();
+
+      const newProjects = data.projects || [];
+
+      if (reset) {
+        setProjects(newProjects);
+      } else {
+        setProjects((prev) => [...prev, ...newProjects]);
+      }
+
+      setHasMore(data.hasMore || false);
+      setTotal(data.total || 0);
+      setPage(pageNum);
+    } catch (err) {
+      setError("Failed to load projects.");
+      if (reset) setProjects([]);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  };
+
+  // ✅ Naya subservice select hone pe fresh load
   useEffect(() => {
     if (!selected) { setProjects([]); return; }
-    const fetchProjects = async () => {
-      setLoading(true); setError("");
-      try {
-        const res = await fetch(`http://localhost:3000/api/projects/${selected.serviceId}/${slugify(selected.subservice)}`);
-        const data = await res.json();
-        setProjects(Array.isArray(data) ? data : []);
-      } catch (err) {
-        setError("Failed to load projects.");
-        setProjects([]);
-      } finally { setLoading(false); }
-    };
-    fetchProjects();
+    setPage(1);
+    setHasMore(false);
+    fetchProjects(selected, 1, true);
   }, [selected]);
 
   useEffect(() => {
@@ -126,7 +143,6 @@ const Services = () => {
 
   return (
     <div ref={projectsRef} style={{ fontFamily: "'Segoe UI', sans-serif", background: "#fdfaf7", minHeight: "100vh", padding: "100px 24px 80px" }}>
-
       {selected ? (
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
@@ -134,11 +150,15 @@ const Services = () => {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "32px", flexWrap: "wrap", gap: "12px" }}>
             <div>
               <p style={{ fontSize: "12px", color: "#f97316", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
-                {mainServices.find(s => s.id === selected.serviceId)?.name} › {selected.subservice}
+                {mainServices.find((s) => s.id === selected.serviceId)?.name} › {selected.subservice}
               </p>
               <h2 style={{ fontSize: "26px", fontWeight: 800, color: "#1a1a1a", margin: 0 }}>
                 {selected.subservice} Projects{" "}
-                {!loading && <span style={{ fontSize: "16px", fontWeight: 400, color: "#aaa" }}>({projects.length})</span>}
+                {!loading && (
+                  <span style={{ fontSize: "16px", fontWeight: 400, color: "#aaa" }}>
+                    ({projects.length}{hasMore ? `/${total}` : ""})
+                  </span>
+                )}
               </h2>
             </div>
             <button
@@ -168,7 +188,32 @@ const Services = () => {
           {/* Projects Grid */}
           {!loading && !error && projects.length > 0 && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "24px" }}>
-              {projects.map((project) => <ProjectCard key={project._id} project={project} />)}
+              {projects.map((project) => (
+                <ProjectCard key={project._id} project={project} />
+              ))}
+            </div>
+          )}
+
+          {/* ✅ Load More Button */}
+          {hasMore && !loading && (
+            <div style={{ textAlign: "center", marginTop: "48px" }}>
+              <p style={{ fontSize: "13px", color: "#aaa", marginBottom: "12px" }}>
+                Showing {projects.length} of {total} projects
+              </p>
+              <button
+                onClick={() => fetchProjects(selected, page + 1, false)}
+                disabled={loadingMore}
+                style={{
+                  padding: "12px 36px", borderRadius: "24px",
+                  border: "2px solid #f97316", background: "#fff",
+                  color: "#f97316", fontSize: "14px", fontWeight: 600,
+                  cursor: loadingMore ? "not-allowed" : "pointer",
+                  opacity: loadingMore ? 0.7 : 1,
+                  transition: "all 0.3s",
+                }}
+              >
+                {loadingMore ? "Loading..." : "Load More Projects"}
+              </button>
             </div>
           )}
 
@@ -182,17 +227,15 @@ const Services = () => {
 
         </div>
       ) : (
-  <div style={{ textAlign: "center", padding: "80px 24px", color: "#aaa" }}>
-
-    <p style={{ fontSize: "16px", color: "#888" }}>
-      {window.innerWidth < 768 ? (
-        <>Tap the menu icon (☰) above and select <strong>Our Services</strong> to explore</>
-      ) : (
-        <>Hover on <strong>Services</strong> in the navbar and select a subservice</>
-      )}
-    </p>
-  </div>
-
+        <div style={{ textAlign: "center", padding: "80px 24px", color: "#aaa" }}>
+          <p style={{ fontSize: "16px", color: "#888" }}>
+            {window.innerWidth < 768 ? (
+              <>Tap the menu icon (☰) above and select <strong>Our Services</strong> to explore</>
+            ) : (
+              <>Hover on <strong>Services</strong> in the navbar and select a subservice</>
+            )}
+          </p>
+        </div>
       )}
     </div>
   );

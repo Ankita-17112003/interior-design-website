@@ -138,23 +138,7 @@ const Team = () => {
           </div>
         </div>
 
-        {/* Stats/Bottom Section */}
-        <div className="mt-16 pt-8 border-t border-stone-200">
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-orange-500">25+</div>
-              <div className="text-xs sm:text-sm text-stone-500 mt-1">Years Combined Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-orange-500">200+</div>
-              <div className="text-xs sm:text-sm text-stone-500 mt-1">Projects Completed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-orange-500">50+</div>
-              <div className="text-xs sm:text-sm text-stone-500 mt-1">Design Awards</div>
-            </div>
-          </div>
-        </div>
+        
       </div>
 
       {/* Animation Styles */}

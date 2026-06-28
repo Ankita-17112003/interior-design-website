@@ -327,7 +327,7 @@ function Hero() {
                   </h1>
 
                   {/* Subtext */}
-                  <p key={`p-${animKey}`} className="hero-sub" style={{ marginBottom: "40px" }}>
+                  <p key={`p-${animKey}`} className="hero-sub font-title " style={{ marginBottom: "40px" }}>
                     {slide.sub}
                   </p>
 

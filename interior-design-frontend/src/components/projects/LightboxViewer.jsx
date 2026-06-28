@@ -88,6 +88,7 @@ const LightboxViewer = ({ isOpen, onClose, items, currentIndex, onNext, onPrev }
             <img
               src={currentItem.src}
               alt={currentItem.title}
+              
               className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
               style={{ animation: 'lightboxZoomIn 0.3s ease-out' }}
               onLoad={() => setIsLoading(false)}

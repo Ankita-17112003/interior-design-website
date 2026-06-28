@@ -13,11 +13,29 @@ const ServiceAreaSection = () => {
 
   const cities = [
     "Pune",
+    "Mumabi",
     "Nashik",
-    "Katraj",
     "Pimpri-Chinchwad",
     "Nagpur",
-    "Karve-Nagar",
+    "Jalna",
+    "Sambhaji Nagar",
+    "Satara",
+    "Kolhapur",
+    "Sangali",
+    "Karad",
+    "Ichalkaranji",
+    "Amaravati",
+    "Akola",
+    "Parbhani",
+    "Sangamner",
+    "Dhule",
+    "Jalgoan",
+    "Latur",
+    "Dharashiv",
+    "Hydrabad",
+    "Kalburgi (karnataka)",
+    "Beed"  
+    
   ];
 
   useEffect(() => {
