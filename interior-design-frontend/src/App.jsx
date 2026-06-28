@@ -4,6 +4,8 @@ import Navbar from "./components/home/Navbar";
 import Footer from "./components/home/Footer";
 import ScrollToTop from "./components/home/ScrollToTop";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import FloatingMessage from "./components/home/FloatingMessage";
+import FloatingWhatsApp from "./components/home/FloatingWhatsApp";
 
 // Public pages
 import Home from "./pages/Home";
@@ -29,32 +31,26 @@ import AdminLayout from "./components/admin/AdminLayout";
 function AppContent() {
   const location = useLocation();
 
-  // Admin page aahe ka?
   const isAdminPage = location.pathname.startsWith("/admin");
 
   return (
     <>
-
       <ScrollToTop />
-      {/* Navbar only for public pages */}
       {!isAdminPage && <Navbar />}
 
       <Routes>
-        {/* PUBLIC */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contacts />} />
         <Route
-  path="/services/:service/:subservice"
-  element={<ProjectsGallery />}
-/>
+          path="/services/:service/:subservice"
+          element={<ProjectsGallery />}
+        />
 
-        {/* ADMIN LOGIN */}
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* ADMIN DASHBOARD */}
         <Route
           path="/admin"
           element={
@@ -73,11 +69,13 @@ function AppContent() {
         </Route>
 
         <Route path="*" element={<><Navbar /><NotFound/></>} />
-
       </Routes>
 
-      {/* Footer only for public pages */}
       {!isAdminPage && <Footer />}
+
+      {/* 👇 Floating buttons — public pages only */}
+      {!isAdminPage && <FloatingMessage />}
+      {!isAdminPage && <FloatingWhatsApp />}
     </>
   );
 }
