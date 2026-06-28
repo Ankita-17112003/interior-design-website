@@ -13,7 +13,7 @@ const ServiceAreaSection = () => {
 
   const cities = [
     "Pune",
-    "Mumabi",
+    "Mumbai",
     "Nashik",
     "Pimpri-Chinchwad",
     "Nagpur",

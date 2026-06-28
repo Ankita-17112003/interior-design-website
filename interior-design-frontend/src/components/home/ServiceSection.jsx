@@ -16,7 +16,7 @@ const ServiceSection = () => {
     "Consultancy",
     "Themed Interior",
     "Renovation",
-    "Space Management"
+    "Space Management",
   ];
 
   useEffect(() => {
@@ -63,10 +63,12 @@ const ServiceSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 md:py-20 bg-[#f8f6f2] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="py-12 sm:py-16 md:py-20 bg-[#f8f6f2] overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-
           {/* IMAGE FIRST ON MOBILE, SECOND ON DESKTOP */}
           <div className="service-img order-1 md:order-2">
             <img
@@ -78,7 +80,6 @@ const ServiceSection = () => {
 
           {/* TEXT SECOND ON MOBILE, FIRST ON DESKTOP */}
           <div className="service-text order-2 md:order-1 text-center md:text-left">
-
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 font-playfair">
               Our <span className="text-orange-500">Services</span>
             </h2>
@@ -97,13 +98,13 @@ const ServiceSection = () => {
                   className="flex items-start gap-3"
                 >
                   <span className="text-[#c8a97e] text-lg sm:text-xl">✔</span>
-                  <p className="text-gray-700 text-sm sm:text-base">{service}</p>
+                  <p className="text-gray-700 text-sm sm:text-base">
+                    {service}
+                  </p>
                 </div>
               ))}
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

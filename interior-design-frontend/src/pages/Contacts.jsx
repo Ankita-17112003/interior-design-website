@@ -1,5 +1,6 @@
 // pages/Contact.jsx
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import gsap from 'gsap';
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -13,6 +14,8 @@ import api from "../api/axios";
 gsap.registerPlugin(ScrollTrigger);
 
 const Contacts = () => {
+  const location = useLocation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -87,6 +90,17 @@ const Contacts = () => {
 
     return () => ctx.revert();
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      }
+    }
+  }, [location]);
 
   const handleChange = (e) => {
     setFormData({
@@ -198,12 +212,12 @@ if (!emailRegex.test(formData.email)) {
 </section>
 
       {/* Main Contact Section */}
-      <section className="py-12 sm:py-16 md:py-24">
+      <section className="py-12 sm:py-16 md:py-24" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             
             {/* Contact Form - Improved */}
-            <div ref={formRef} className="w-full">
+            <div ref={formRef} className="w-full" id="contact-form">
               <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-gray-100">
                 <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2 font-playfair">
                   Send Us a Message

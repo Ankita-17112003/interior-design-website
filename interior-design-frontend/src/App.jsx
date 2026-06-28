@@ -5,7 +5,6 @@ import Footer from "./components/home/Footer";
 import ScrollToTop from "./components/home/ScrollToTop";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import FloatingMessage from "./components/home/FloatingMessage";
-import FloatingWhatsApp from "./components/home/FloatingWhatsApp";
 
 // Public pages
 import Home from "./pages/Home";
@@ -75,7 +74,6 @@ function AppContent() {
 
       {/* 👇 Floating buttons — public pages only */}
       {!isAdminPage && <FloatingMessage />}
-      {!isAdminPage && <FloatingWhatsApp />}
     </>
   );
 }
